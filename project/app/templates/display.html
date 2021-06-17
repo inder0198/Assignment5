@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5</title>
+
+</head>
+<body bgcolor="#ffad33">
+<h3>Assignment 5</h3>
+
+
+
+<form name="form1" action="/output" method="POST">
+    {% csrf_token %}
+
+    <h3>Select option in  Dropdown</h3>
+
+    <select name="dropdown1" id="dropdown1" style="width:400px">
+        {% for i in string %}
+        <option value="{{i}}">{{i}}</option><br>
+        {% endfor %}
+    </select>
+
+    <select name="dropdown2" id="dropdown2" style="width:400px">
+    {% for i in string %}
+        <option value="{{i}}">{{i}}</option><br>
+    {% endfor %}
+    </select><br><br>
+
+    <input type="submit">
+    <input type="reset">
+
+</form>
+</body>
+</html>
