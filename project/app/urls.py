@@ -9,5 +9,5 @@ urlpatterns = [
     path('output',views.output),
     url(r'^down_file', views.down_file),
     path('transpose',views.transpose),
-    url(r'^down_file_transpose', views.down_file_transpose),
+    url(r'^downfile_transpose', views.downfile_transpose),
 ]

@@ -52,20 +52,21 @@ def down_file(request):
 def transpose(request):
     transpose=CrossTab.transpose()
     print(transpose)
+    print(1)
     transpose.to_excel("Pivot_Data_Transpose.xlsx")
     c = transpose.to_html()
 
-    table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output1.html", "w")
+    table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output2.html", "w")
     table.write(c)
     table.close()
 
-    table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output1.html", "a")
-    table.write(r'<button onclick ="window.location.href=`/down_file_transpose`">Download File</button>')
+    table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output2.html", "a")
+    table.write(r'<button onclick ="window.location.href=`/downfile_transpose`">Download Transpose File</button>')
     table.close()
 
-    return render(request, "output1.html", {"string": transpose})
+    return render(request, "output2.html", {"string": c})
 
-def down_file_transpose(request):
+def downfile_transpose(request):
     with open('Pivot_Data_Transpose.xlsx', 'rb') as model_excel:
         result = model_excel.read()
     response = HttpResponse(result)
