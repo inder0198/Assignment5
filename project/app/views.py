@@ -52,7 +52,6 @@ def down_file(request):
 def transpose(request):
     transpose=CrossTab.transpose()
     print(transpose)
-    print(1)
     transpose.to_excel("Pivot_Data_Transpose.xlsx")
     c = transpose.to_html()
 
