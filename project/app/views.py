@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 import pandas as pd
@@ -24,17 +25,31 @@ def output(request):
     data2=file[var2]
     CrossTab= pd.crosstab(data1,data2,margins=True)
     print(CrossTab)
+    CrossTab.to_excel("Pivot_Data.xlsx")
     b= CrossTab.to_html()
 
     table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output1.html", "w")
     table.write(b)
     table.close()
 
+    # table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output1.html", "a")
+    # table.write(r'<a href="Pivot_Data.xlsx" download><button type="button">Download</button></a>')
+    # table.close()
+
+    table = open("C:/Users/Inderjeet/PycharmProjects/Assignment5/project/app/templates/output1.html", "a")
+    table.write(r'<button onclick ="window.location.href=`/down_file`">Downloadfile</button>')
+    table.close()
+
     return render(request, "output1.html", {"string":b})
 
 
 
-
+def down_file(request):
+    with open('Pivot_Data.xlsx', 'rb') as model_excel:
+        result = model_excel.read()
+    response = HttpResponse(result)
+    response['Content-Disposition'] = 'attachment; filename=Pivot_table.xlsx'
+    return response
 
 
 
